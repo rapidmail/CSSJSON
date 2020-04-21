@@ -82,6 +82,7 @@ var CSSJSON = new function () {
         };
         var match = null;
         var count = 0;
+        var i;
 
         if (typeof args == 'undefined') {
             var args = {
@@ -121,7 +122,7 @@ var CSSJSON = new function () {
                     } else {
                         var bits = [name];
                     }
-                    for (var i = 0; i < bits.length; i++) {
+                    for (i in bits) {
                         var sel = bits[i].trim();
                         if (sel in node.children) {
                             for (var att in newNode.attributes) {
@@ -179,7 +180,7 @@ var CSSJSON = new function () {
      *            Whether to add line breaks in the output.
      */
     base.toCSS = function (node, depth, breaks) {
-        var cssString = '';
+        var cssString = '', i;
         if (typeof depth == 'undefined') {
             depth = 0;
         }
@@ -296,6 +297,4 @@ var CSSJSON = new function () {
 
 };
 
-if (typeof module === 'object') {
-    module.exports = CSSJSON;
-}
+export default CSSJSON;
